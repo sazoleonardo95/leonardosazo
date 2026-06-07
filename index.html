@@ -15,15 +15,16 @@
 <meta name="geo.region" content="CL">
 <meta name="geo.placename" content="Chile">
 <link rel="canonical" href="https://www.leonardosazo.cl/">
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237F77DD'/%3E%3Ctext x='16' y='23' font-family='Arial Black' font-size='18' font-weight='900' fill='white' text-anchor='middle'%3ELS%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="https://leonardosazo.cl/favicon.png">
+<link rel="apple-touch-icon" href="https://leonardosazo.cl/apple-touch-icon.png">
 
 <!-- ======= OPEN GRAPH (Facebook, WhatsApp, LinkedIn) ======= -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.leonardosazo.cl/">
 <meta property="og:title" content="Leonardo Sazo | Marketing Digital, GEO y Fundador de Modo Bacán">
 <meta property="og:description" content="Experto en marketing digital y GEO. Fundador de Modo Bacán, la primera agencia GEO de Chile. Certificado por Meta.">
-<meta property="og:image" content="https://leonardosazo.cl/og-image.png">
+<meta property="og:image" content="https://www.leonardosazo.cl/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -35,7 +36,7 @@
 <meta name="twitter:url" content="https://www.leonardosazo.cl/">
 <meta name="twitter:title" content="Leonardo Sazo | Marketing Digital, GEO y Fundador de Modo Bacán">
 <meta name="twitter:description" content="Experto en marketing digital y GEO. Fundador de Modo Bacán, la primera agencia GEO de Chile.">
-<meta name="twitter:image" content="https://leonardosazo.cl/og-image.png">
+<meta name="twitter:image" content="https://www.leonardosazo.cl/og-image.png">
 
 <!-- ======= SCHEMA JSON-LD (datos estructurados para Google) ======= -->
 <script type="application/ld+json">
@@ -315,6 +316,59 @@
   }
   .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; color: var(--text); font-size: 24px; align-items: center; }
   .mobile-menu { display: none; }
+
+/* ── POPUP ────────────────────────────────────────────────────────── */
+.popup-overlay {
+  display: none; position: fixed; inset: 0; z-index: 9000;
+  background: rgba(38,33,92,0.55); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center; padding: 1.5rem;
+}
+.popup-overlay.show { display: flex; }
+.popup-box {
+  background: white; border-radius: 20px; padding: 2.5rem 2rem 2rem;
+  max-width: 440px; width: 100%; position: relative;
+  box-shadow: 0 24px 64px rgba(127,119,221,0.25);
+  animation: popIn .35s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes popIn { from{opacity:0;transform:scale(.88) translateY(20px)} to{opacity:1;transform:none} }
+.popup-close {
+  position: absolute; top: 1rem; right: 1rem; width: 30px; height: 30px;
+  border-radius: 50%; border: none; background: var(--bg-alt); cursor: pointer;
+  font-size: 1rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.popup-close:hover { background: var(--purple-100); }
+.popup-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--purple-50); color: var(--purple-600);
+  font-size: 11px; font-weight: 600; padding: 4px 12px;
+  border-radius: 20px; border: 1px solid var(--purple-100);
+  margin-bottom: 1rem; letter-spacing: .5px;
+}
+.popup-box h3 {
+  font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700;
+  color: var(--purple-900); margin-bottom: .6rem; line-height: 1.2;
+}
+.popup-box p {
+  font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.5rem;
+}
+.popup-input-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.popup-input {
+  flex: 1; min-width: 180px; padding: 11px 14px; border-radius: 9px;
+  border: 1.5px solid var(--border); font-size: 14px; font-family: 'DM Sans',sans-serif;
+  outline: none; transition: border-color .2s; color: var(--text);
+}
+.popup-input:focus { border-color: var(--purple-400); }
+.popup-btn {
+  background: var(--purple-400); color: white; border: none; padding: 11px 20px;
+  border-radius: 9px; font-size: 14px; font-weight: 500; cursor: pointer;
+  font-family: 'DM Sans',sans-serif; white-space: nowrap; transition: background .2s;
+}
+.popup-btn:hover { background: var(--purple-600); }
+.popup-note { font-size: 11px; color: var(--text-muted); margin-top: .75rem; text-align: center; }
+.popup-success { text-align: center; padding: 1rem 0; }
+.popup-success .popup-emoji { font-size: 2.5rem; margin-bottom: .5rem; }
+.popup-success p { font-size: 15px; color: var(--purple-600); font-weight: 500; margin: 0; }
 </style>
 
 <script type="application/ld+json">
@@ -338,29 +392,51 @@
 </head>
 <body>
 
+
+<!-- POPUP CURSOS -->
+<div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
+  <div class="popup-box" role="dialog" aria-modal="true" aria-label="Suscríbete al lanzamiento de cursos">
+    <button class="popup-close" onclick="document.getElementById('popupOverlay').classList.remove('show')" aria-label="Cerrar">✕</button>
+    <div id="popupContent">
+      <div class="popup-badge">🚀 Próximamente</div>
+      <h3>Cursos de GEO y Marketing Digital para Chile</h3>
+      <p>Sé el primero en saber cuando lancen. Aprende a posicionar tu negocio en Google, ChatGPT y Perplexity — desde cero y en español chileno.</p>
+      <div class="popup-input-row">
+        <input type="email" class="popup-input" id="popupEmail" placeholder="tu@email.com">
+        <button class="popup-btn" onclick="handlePopupSubmit()">Avísame →</button>
+      </div>
+      <p class="popup-note">Sin spam. Solo el aviso del lanzamiento.</p>
+    </div>
+    <div class="popup-success" id="popupSuccess" style="display:none">
+      <div class="popup-emoji">🎉</div>
+      <p>¡Listo! Te avisamos antes que a nadie.</p>
+    </div>
+  </div>
+</div>
+
 <nav>
   <div class="logo">
     <span class="first">Leonardo </span><span class="last">Sazo</span>
     <span class="role">Fundador de Modo Bacán · Certificado Meta</span>
   </div>
   <ul class="nav-links">
-    <li><a href="#inicio">Inicio</a></li>
-    <li><a href="#sobre-mi">Sobre mí</a></li>
-    <li><a href="#modobacan">Modo Bacán</a></li>
-    <li><a href="#portafolio">Portafolio</a></li>
-    <li><a href="#cursos">Cursos</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="/inicio">Inicio</a></li>
+    <li><a href="/sobre-mi">Sobre mí</a></li>
+    <li><a href="/modobacan">Modo Bacán</a></li>
+    <li><a href="/portafolio">Portafolio</a></li>
+    <li><a href="/cursos">Cursos</a></li>
+    <li><a href="/contacto">Contacto</a></li>
   </ul>
   <button class="nav-cta" onclick="window.open('https://modobacan.cl','_blank')">Ir a Modo Bacán →</button>
   <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú">&#9776;</button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#inicio" onclick="closeMobile()">Inicio</a>
-  <a href="#sobre-mi" onclick="closeMobile()">Sobre mí</a>
-  <a href="#modobacan" onclick="closeMobile()">Modo Bacán</a>
-  <a href="#portafolio" onclick="closeMobile()">Portafolio</a>
-  <a href="#cursos" onclick="closeMobile()">Cursos</a>
-  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+  <a href="/inicio" onclick="closeMobile()">Inicio</a>
+  <a href="/sobre-mi" onclick="closeMobile()">Sobre mí</a>
+  <a href="/modobacan" onclick="closeMobile()">Modo Bacán</a>
+  <a href="/portafolio" onclick="closeMobile()">Portafolio</a>
+  <a href="/cursos" onclick="closeMobile()">Cursos</a>
+  <a href="/contacto" onclick="closeMobile()">Contacto</a>
   <a href="https://modobacan.cl" target="_blank" class="mobile-cta" onclick="closeMobile()">Ir a Modo Bacán →</a>
 </div>
 
@@ -371,7 +447,7 @@
   <p class="hero-sub">Experto en marketing digital, diseño web y GEO — la nueva disciplina que hace que tu negocio aparezca en Google, ChatGPT y Perplexity. Certificado por Meta. Más de 10 clientes activos. 100% remoto.</p>
   <div class="hero-btns">
     <button class="btn-primary" onclick="window.open('https://modobacan.cl','_blank')">Conoce Modo Bacán →</button>
-    <button class="btn-secondary" onclick="document.getElementById('portafolio').scrollIntoView({behavior:'smooth'})">Ver mi trabajo</button>
+    <button class="btn-secondary" onclick="navigateTo('/portafolio')">Ver mi trabajo</button>
   </div>
   <div class="hero-stats">
     <div><div class="stat-num">10+</div><div class="stat-label">Clientes activos</div></div>
@@ -722,5 +798,99 @@
     hamburger.innerHTML = '&#9776;';
   }
 </script>
+
+<script>
+// POPUP — aparece al 50% de scroll, solo una vez por sesión
+(function(){
+  if(sessionStorage.getItem('ls_popup_shown')) return;
+  let fired = false;
+  window.addEventListener('scroll', function handler(){
+    if(fired) return;
+    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    if(scrolled >= 0.5){
+      fired = true;
+      sessionStorage.setItem('ls_popup_shown','1');
+      document.getElementById('popupOverlay').classList.add('show');
+      window.removeEventListener('scroll', handler);
+    }
+  });
+})();
+
+function closePopup(e){
+  if(e.target === document.getElementById('popupOverlay'))
+    document.getElementById('popupOverlay').classList.remove('show');
+}
+
+function handlePopupSubmit(){
+  const email = document.getElementById('popupEmail').value;
+  if(!email || !email.includes('@')){
+    document.getElementById('popupEmail').style.borderColor='#EF4444';
+    return;
+  }
+  document.getElementById('popupContent').style.display='none';
+  document.getElementById('popupSuccess').style.display='block';
+  setTimeout(()=>{ document.getElementById('popupOverlay').classList.remove('show'); }, 2200);
+}
+</script>
+
+
+<script>
+// ── URL LIMPIA SIN # ──────────────────────────────────────────────────────
+const ROUTES = {"/inicio": "inicio", "/sobre-mi": "sobre-mi", "/modobacan": "modobacan", "/portafolio": "portafolio", "/cursos": "cursos", "/faq": "faq", "/contacto": "contacto"};
+
+function navigateTo(path) {
+  const anchor = ROUTES[path];
+  if (anchor) {
+    const el = document.getElementById(anchor);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.history.pushState(null, '', path);
+    }
+  }
+}
+
+// Al cargar, si la URL tiene una ruta limpia, hacer scroll al anchor
+document.addEventListener('DOMContentLoaded', function() {
+  const path = window.location.pathname;
+  if (path !== '/' && ROUTES[path]) {
+    setTimeout(() => {
+      const el = document.getElementById(ROUTES[path]);
+      if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }, 80);
+  }
+});
+
+// Interceptar clicks en links internos para no recargar
+document.addEventListener('click', function(e) {
+  const a = e.target.closest('a');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href) return;
+  // Solo links internos que empiezan con /
+  if (href.startsWith('/') && !href.startsWith('//') && ROUTES[href]) {
+    e.preventDefault();
+    navigateTo(href);
+  }
+});
+
+// Actualizar URL al hacer scroll (IntersectionObserver)
+(function() {
+  const ids = ['inicio', 'sobre-mi', 'modobacan', 'portafolio', 'cursos', 'faq', 'contacto'];
+  const opts = { threshold: 0.35 };
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const path = '/' + entry.target.id.replace(/_/g,'-');
+        const clean = Object.entries(ROUTES).find(([p,id]) => id === entry.target.id);
+        if (clean) window.history.replaceState(null, '', clean[0]);
+      }
+    });
+  }, opts);
+  document.querySelectorAll('[id]').forEach(el => {
+    if (ids.includes(el.id)) obs.observe(el);
+  });
+})();
+</script>
+
 </body>
 </html>

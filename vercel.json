@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    { "source": "/inicio",     "destination": "/index.html" },
+    { "source": "/sobre-mi",   "destination": "/index.html" },
+    { "source": "/modobacan",  "destination": "/index.html" },
+    { "source": "/portafolio", "destination": "/index.html" },
+    { "source": "/cursos",     "destination": "/index.html" },
+    { "source": "/faq",        "destination": "/index.html" },
+    { "source": "/contacto",   "destination": "/index.html" },
+    { "source": "/(.*)",       "destination": "/index.html" }
+  ]
+}
