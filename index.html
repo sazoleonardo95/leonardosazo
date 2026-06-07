@@ -321,7 +321,18 @@
   .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; color: var(--text); font-size: 24px; align-items: center; }
   .mobile-menu { display: none; }
 
-/* ── POPUP ────────────────────────────────────────────────────────── */
+.mb-ls-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .mb-ls-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
 .popup-overlay {
   display: none; position: fixed; inset: 0; z-index: 9000;
   background: rgba(38,33,92,0.55); backdrop-filter: blur(6px);
@@ -522,15 +533,15 @@
 </section>
 
 <!-- MODO BACÁN -->
-<section id="modobacan" style="background: var(--purple-900); padding: 5rem 3rem;">
+<section id="modobacan" style="background: var(--purple-900); padding: 5rem 1.5rem;">
   <div style="max-width: 900px; margin: 0 auto;">
     <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(127,119,221,0.25); border: 1px solid rgba(175,169,236,0.3); color: #CECBF6; font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 20px; margin-bottom: 1.25rem; letter-spacing: 0.8px; text-transform: uppercase;">🚀 Mi agencia</div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+    <div class="mb-ls-grid">
       <div>
         <h2 style="font-family:'Syne',sans-serif; font-size: clamp(26px,4vw,38px); font-weight:700; color:white; letter-spacing:-1px; line-height:1.15; margin-bottom:1rem;">Modo Bacán —<br>donde tu marca<br><span style="color:var(--purple-200);">se activa de verdad</span></h2>
         <p style="font-size:15px; color:#AFA9EC; line-height:1.75; margin-bottom:1rem;">Fundé Modo Bacán para llevar el marketing digital chileno a otro nivel. Somos la primera agencia GEO de Chile: te hacemos aparecer en Google, ChatGPT y Perplexity.</p>
         <p style="font-size:15px; color:#AFA9EC; line-height:1.75; margin-bottom:2rem;">Si buscas diseño web, CM, SEO, GEO o pauta digital — Modo Bacán es el lugar.</p>
-        <a href="https://modobacan.cl" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:var(--purple-400); color:white; padding:13px 28px; border-radius:9px; font-size:15px; font-weight:500; text-decoration:none; transition: background 0.2s;" onmouseover="this.style.background='#534AB7'" onmouseout="this.style.background='#7F77DD'">Visitar modobacan.cl →</a>
+        <a href="https://modobacan.cl" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:var(--purple-400); color:white; padding:13px 28px; border-radius:9px; font-size:15px; font-weight:500; text-decoration:none;">Visitar modobacan.cl →</a>
       </div>
       <div style="display:flex; flex-direction:column; gap:10px;">
         <div style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(175,169,236,0.15); border-radius:12px; padding:12px 16px;">
